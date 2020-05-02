@@ -11,10 +11,12 @@ public class Cat extends Animal implements IPredator, IPrey {
         System.out.println("Cat moves tail a lot");
     }
 
+    @Override
     public void eat() {
         System.out.println("Cat eats mouse");
     }
 
+    @Override
     public void beEaten() {
         System.out.println("Cat is eaten by dog");
     }

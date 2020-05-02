@@ -11,6 +11,7 @@ public class Mouse extends Animal implements IPrey {
         System.out.println("Mouse moves fast");
     }
 
+    @Override
     public void beEaten() {
         System.out.println("Mouse is eaten by cat or dog");
     }

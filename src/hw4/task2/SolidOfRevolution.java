@@ -12,8 +12,4 @@ public abstract class SolidOfRevolution implements IShape {
         this.radius = radius;
     }
 
-    @Override
-    public double getVolume() {
-        return 0;
-    }
 }
