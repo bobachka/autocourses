@@ -38,13 +38,14 @@ public class Cashier {
         queue.add(customer5);
         queue.add(customer6);
 
-        for (Customer q : queue) {
+        while (!queue.isEmpty()) {
+            Customer customer = queue.poll();
             int sum = 0;
-            for (String product : q.getPurchases()) {
+            for (String product : customer.getPurchases()) {
                 sum += pricelist.get(product);
             }
-            System.out.printf("%s, the total price of your purchases is %d.\n", q.getName(), sum);
-            q.cleanPurchases();
+            System.out.printf("%s, the total price of your purchases is %d.\n", customer.getName(), sum);
+            customer.cleanPurchases();
         }
     }
 }
