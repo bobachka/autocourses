@@ -11,10 +11,7 @@ package hw6.Task4;
 //- «получить весь список машин».
 //Все возможные исключительные ситуации в программе должны быть правильно обработаны, и на экран должно выводиться понятное сообщение об ошибке.
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class AutoDealer {
     public static void main(String[] args) {
@@ -29,8 +26,10 @@ public class AutoDealer {
         carList.add(new Car("BMW", "X7 xDrive 50i", 2018, 35000));
         carList.add(new Car("Volvo", "X70", 2013, 14000));
 
-        Scanner scanner = new Scanner(System.in);
+        YearValidator yv = new YearValidator();
+
         while (true) {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите нужную опцию:\n" +
                     "1. Получить информацию о всех машинах\n" +
                     "2. Добавить машину в список\n" +
@@ -41,9 +40,9 @@ public class AutoDealer {
             int option = 0;
             try {
                 option = scanner.nextInt();
-            } catch (Exception e) {
-                System.err.println("Введённая опция некорректна. Попробуйте ещё раз.");
-                return;
+            } catch (InputMismatchException e) {
+                System.err.println("Введённая опция некорректна. Попробуйте ещё раз.\n");
+                continue;
             }
 
             switch (option) {
@@ -58,9 +57,26 @@ public class AutoDealer {
                     System.out.print("Введите модель автомобиля: ");
                     String model = scanner.next();
                     System.out.print("Введите год выпуска автомобиля: ");
-                    int year = scanner.nextInt();
+                    int year;
+                    try {
+                        year = scanner.nextInt();
+                        yv.validate(year);
+                    } catch (InputMismatchException e) {
+                        System.err.println("Год выпуска должен состоять из цифр. Давайте начнём сначала.\n");
+                        continue;
+                    } catch (IncorrectYearException ie) {
+
+                        continue;
+                    }
+
                     System.out.print("Введите цену автомобиля: ");
-                    int price = scanner.nextInt();
+                    int price;
+                    try {
+                        price = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.err.println("Цена должна состоять из цифр. Давайте начнём сначала.\n");
+                        continue;
+                    }
 
                     Car newCar = new Car(manufacturer, model, year, price);
                     carList.add(newCar);
