@@ -7,6 +7,7 @@ package hw6.Task2;
 //Для хранения покупателей использовать Queue.
 
 import java.util.*;
+import java.lang.Comparable;
 
 public class Cashier {
     public static void main(String[] args) {
@@ -30,13 +31,15 @@ public class Cashier {
         Customer customer5 = new Customer("Jura", new ArrayList<String>(Arrays.asList("apples", "milk")));
         Customer customer6 = new Customer("Stepan", new ArrayList<String>(Arrays.asList("fish", "bread", "milk", "eggs")));
 
-        Queue<Customer> queue = new LinkedList<>();
+        Queue<Customer> queue = new PriorityQueue<>();
         queue.add(customer1);
         queue.add(customer2);
         queue.add(customer3);
         queue.add(customer4);
         queue.add(customer5);
         queue.add(customer6);
+
+        System.out.println(queue.isEmpty());
 
         while (!queue.isEmpty()) {
             Customer customer = queue.poll();
@@ -47,5 +50,7 @@ public class Cashier {
             System.out.printf("%s, the total price of your purchases is %d.\n", customer.getName(), sum);
             customer.cleanPurchases();
         }
+
+        System.out.println(queue.isEmpty());
     }
 }

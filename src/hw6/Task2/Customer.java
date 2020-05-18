@@ -2,7 +2,7 @@ package hw6.Task2;
 
 import java.util.List;
 
-public class Customer {
+public class Customer implements Comparable{
     private String name;
     private List<String> purchases;
 
@@ -22,5 +22,10 @@ public class Customer {
     public void cleanPurchases() {
         purchases.clear();
         System.out.println("Shopping is done!\n");
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
