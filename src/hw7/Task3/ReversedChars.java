@@ -22,6 +22,8 @@ public class ReversedChars {
             builder.append(array[i]);
         }
 
+        //builder.reverse
+
         try (FileWriter fileWriter = new FileWriter("src/hw7/Task3/resultFile.txt")) {
             fileWriter.write(builder.toString());
         } catch (IOException e) {
